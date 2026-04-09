@@ -21,40 +21,50 @@ export default function UserPage() {
   const [user, setUser] = useState<GitHubUserDetails | null>(null);
   const [repos, setRepos] = useState<Repo[]>([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1)
+
+  const isBookmarked = bookmarks.some(
+    (b) => b.login === username
+  );
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchUser() {
+      try {
+        const userData = await getUser(username);
+        setUser(userData);
+      } catch {
+        toast.error("Failed to fetch user");
+      }
+    }
+    fetchUser();
+  }, [username]);
+
+  useEffect(() => {
+    async function fetchRepos() {
       try {
         setLoading(true);
+        const repoData = await getUserRepos(username, page);
 
-        const [userData, repoData] = await Promise.all([
-          getUser(username),
-          getUserRepos(username),
-        ]);
-
-        setUser(userData);
-        setRepos(repoData);
-      } catch (error) {
-        toast.error("Failed to fetch user data");
+        setRepos((prev) =>
+          page === 1 ? repoData : [...prev, ...repoData]
+        );
+      } catch {
+        toast.error("Failed to fetch repos");
       } finally {
         setLoading(false);
       }
     }
 
-    fetchData();
-  }, [username]);
+    fetchRepos();
+  }, [username, page]);
 
   if (loading) {
-    return <p className="text-center mt-10">Loading...</p>;
+    return <p className="text-center mt-10 animate-pulse">Loading profile...</p>;
   }
 
-  if (!user) {
+  if (!user) {  
     return <p className="text-center mt-10">User not found</p>;
   }
-
-    const isBookmarked = bookmarks.some(
-    (b) => b.login === username
-    );
 
   return (
     <main className="max-w-3xl mx-auto py-10 px-4 space-y-6">
@@ -76,9 +86,15 @@ export default function UserPage() {
             toast.success("Added to bookmarks");
             }
         }}
-        ></Button>
+        >{isBookmarked ? "Remove Bookmark" : "Bookmark User"}</Button>
         
       <RepoList repos={repos} />
+      <Button
+        onClick={() => setPage((p) => p + 1)}
+        className="mt-4 px-4 py-2 border rounded"
+      >
+        Load More
+      </Button>
     </main>
   );
 }

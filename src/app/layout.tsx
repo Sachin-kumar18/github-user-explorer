@@ -2,6 +2,7 @@ import "./globals.css";
 import ReduxProvider from "../providers/ReduxProvider";
 import ThemeProvider from "../providers/ThemeProvider";
 import { Toaster } from "../components/ui/sonner";
+import Navbar from "../components/common/Navbar";
 
 export default function RootLayout({
   children,
@@ -13,6 +14,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <ReduxProvider>
+            <Navbar />
             {children}
             <Toaster />
           </ReduxProvider>

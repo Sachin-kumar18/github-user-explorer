@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function SearchResults({ users, loading }: Props) {
-  if (loading) {
+  if (!loading && users.length===0) {
     return (
       <div className="grid gap-4 mt-6">
         {Array.from({ length: 5 }).map((_, i) => (
