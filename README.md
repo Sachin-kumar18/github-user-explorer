@@ -1,36 +1,256 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 GitHub User Explorer
 
-## Getting Started
+A modern, minimal, and performant web application to search GitHub users, explore their profiles and repositories, and bookmark your favorite developers.
 
-First, run the development server:
+🔗 **Live Demo:** 
+📦 **Repository:** https://github.com/Sachin-kumar18/github-user-explorer.git
+
+---
+
+## ✨ Features
+
+### 🔍 User Search
+
+- Search GitHub users with a **debounced input**
+- Displays results in clean, responsive cards
+- Loading skeletons for better UX
+- Graceful error handling with toast notifications
+
+### 👤 User Profile
+
+- View detailed user information:
+  - Avatar, name, bio, location
+  - Followers / Following
+  - Public repository count
+
+- Explore repositories with:
+  - Name, description
+  - Star count ⭐
+  - Language badge
+
+- Sort repositories by:
+  - ⭐ Stars
+  - 🕒 Last Updated
+
+- Pagination with **Load More**
+
+### 🔖 Bookmarks
+
+- Add / remove users from bookmarks
+- Persist bookmarks using **localStorage**
+- Dedicated bookmarks page
+- Empty state UI when no bookmarks exist
+
+### 🌙 UI & Experience
+
+- Minimalist, clean UI with **shadcn/ui**
+- Fully responsive design
+- Dark mode toggle using **next-themes**
+- Smooth micro-interactions
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+- **Next.js (App Router)**
+- **TypeScript (strict mode)**
+
+### UI & Styling
+
+- **Tailwind CSS**
+- **shadcn/ui**
+
+### State Management
+
+- **Redux Toolkit (RTK)**
+
+### Utilities
+
+- **next-themes** (Dark mode)
+- **Sonner** (Toast notifications)
+
+### API
+
+- GitHub Public API
+  `https://api.github.com`
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+│
+├── app/
+│   ├── page.tsx                # Search Page
+│   ├── bookmarks/page.tsx      # Bookmarks Page
+│   └── user/[username]/page.tsx # User Profile Page
+│
+├── components/
+│   ├── common/                 # Navbar, Theme Toggle
+│   ├── search/                 # Search components
+│   ├── user/                   # User profile components
+│   ├── bookmarks/              # Bookmark components
+│   └── ui/                     # shadcn components
+│
+├── lib/
+│   └── github.ts               # All API calls
+│
+├── store/
+│   ├── index.ts
+│   └── bookmarksSlice.ts       # Redux slice
+│
+├── hooks/
+│   └── useDebounce.ts          # Debounce hook
+│
+├── types/
+│   └── github.ts               # TypeScript interfaces
+│
+└── providers/
+    ├── ReduxProvider.tsx
+    └── ThemeProvider.tsx
+```
+
+---
+
+## 🧠 Key Technical Decisions
+
+### 1. Centralized API Layer
+
+All API calls are handled inside `/lib/github.ts`
+✔ Ensures separation of concerns
+✔ Improves maintainability and scalability
+
+---
+
+### 2. Strict TypeScript Usage
+
+- Defined interfaces for all API responses
+- No use of `any` anywhere
+
+✔ Improves type safety and developer experience
+
+---
+
+### 3. Debounced Search
+
+Implemented a custom `useDebounce` hook to:
+
+- Prevent excessive API calls
+- Improve performance
+
+---
+
+### 4. Global State with Redux Toolkit
+
+Used RTK for managing bookmarks:
+
+- Accessible across multiple pages
+- Clean and scalable state management
+
+---
+
+### 5. LocalStorage Persistence
+
+Bookmarks persist across refresh using:
+
+```js
+localStorage;
+```
+
+---
+
+### 6. Parallel Data Fetching
+
+Used `Promise.all` for:
+
+- Fetching user details + repositories simultaneously
+  ✔ Improves performance
+
+---
+
+### 7. Pagination Strategy
+
+- Implemented incremental loading using "Load More"
+- Prevents over-fetching large datasets
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone repo-link
+cd github-user-explorer
+```
+
+---
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 3. Run development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Open in browser
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+http://localhost:3000
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is deployed on **Vercel**.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To deploy:
 
-## Deploy on Vercel
+1. Push code to GitHub
+2. Import repo into Vercel
+3. Click **Deploy**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ⚠️ Challenges Faced
+
+- Managing API rate limits and optimizing calls
+- Implementing debounce without affecting UX
+- Handling pagination with clean state updates
+- Maintaining strict TypeScript typing across API responses
+
+---
+
+## 📌 Future Improvements
+
+- Infinite scroll instead of button-based pagination
+- Repository filtering by language
+- Better caching strategy (React Query / SWR)
+- Unit & integration testing
+
+---
+
+## 🙌 Conclusion
+
+This project demonstrates:
+
+- Clean architecture
+- Scalable frontend structure
+- Strong TypeScript practices
+- Performance optimization techniques
+
+---
+

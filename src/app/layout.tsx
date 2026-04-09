@@ -1,7 +1,7 @@
 import "./globals.css";
 import ReduxProvider from "../providers/ReduxProvider";
 import ThemeProvider from "../providers/ThemeProvider";
-import { Toaster } from "../components/ui/sonner";
+import { Toaster } from "sonner"
 import Navbar from "../components/common/Navbar";
 
 export default function RootLayout({
@@ -11,12 +11,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body className="min-h-screen bg-background">
         <ThemeProvider>
           <ReduxProvider>
             <Navbar />
             {children}
-            <Toaster />
+            <Toaster position="top-right"/>
           </ReduxProvider>
         </ThemeProvider>
       </body>

@@ -10,11 +10,9 @@ interface Props {
 export default function SearchResults({ users, loading }: Props) {
   if (!loading && users.length===0) {
     return (
-      <div className="grid gap-4 mt-6">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <Skeleton key={i} className="h-16 w-full rounded-xl" />
-        ))}
-      </div>
+      <p className="text-center text-gray-500 mt-6">
+      Start typing to search users 👀
+    </p>
     );
   }
 

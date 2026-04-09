@@ -26,7 +26,7 @@ export default function Home() {
         setLoading(true);
         const data = await searchUsers(debouncedQuery);
         setUsers(data);
-      } catch (error) {
+      } catch {
         toast.error("Failed to fetch users")
       }finally{
         setLoading(false);
@@ -35,11 +35,13 @@ export default function Home() {
     fetchUsers();
   }, [debouncedQuery])
   return (
-    <main className="flex justify-center items-center h-screen">
+    <main className="min-h-screen flex flex-col items-center px-4 py-10">
+      <div className="w-full max-w-2xl space-y-6">
       <h1 className="text-2xl font-semibold">GitHub User Explorer</h1>
 
       <SearchInput  value={query} onChange={setQuery}/>
       <SearchResults users={users} loading={loading}/>
+      </div>
     </main>
   );
 }

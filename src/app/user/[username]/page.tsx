@@ -70,6 +70,8 @@ export default function UserPage() {
     <main className="max-w-3xl mx-auto py-10 px-4 space-y-6">
       <UserHeader user={user} />
       <Button
+        className="w-full"
+        variant={isBookmarked ? "destructive" : "default"}
         onClick={() => {
             if (!user) return;
 
@@ -86,7 +88,7 @@ export default function UserPage() {
             toast.success("Added to bookmarks");
             }
         }}
-        >{isBookmarked ? "Remove Bookmark" : "Bookmark User"}</Button>
+        >{isBookmarked ? "❌ Remove Bookmark" : "⭐ Bookmark User"}</Button>
         
       <RepoList repos={repos} />
       <Button

@@ -10,7 +10,7 @@ interface Props {
 export default function UserCard({ user }: Props) {
   return (
     <Link href={`/user/${user.login}`}>
-      <Card className="p-4 flex items-center gap-4 hover:shadow-md transition cursor-pointer">
+      <Card className="p-4 flex items-center gap-4 hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer">
         <Image
           src={user.avatar_url}
           alt={user.login}
