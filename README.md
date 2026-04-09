@@ -2,8 +2,8 @@
 
 A modern, minimal, and performant web application to search GitHub users, explore their profiles and repositories, and bookmark your favorite developers.
 
-🔗 **Live Demo:** 
-📦 **Repository:** https://github.com/Sachin-kumar18/github-user-explorer.git
+🔗 **Live Demo: * https://github-user-explorer-git-main-sachins-projects-22e16704.vercel.app/ * 
+📦 **Repository: * https://github.com/Sachin-kumar18/github-user-explorer *
 
 ---
 
@@ -183,7 +183,7 @@ Used `Promise.all` for:
 ### 1. Clone the repository
 
 ```bash
-git clone repo-link
+git clone https://github.com/Sachin-kumar18/github-user-explorer.git
 cd github-user-explorer
 ```
 
