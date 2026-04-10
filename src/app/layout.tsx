@@ -10,7 +10,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning> 
+    {/* supressHydrationWarning -> useful when theme or client-side values differ from server render */}
       <body className="min-h-screen bg-background">
         <ThemeProvider>
           <ReduxProvider>

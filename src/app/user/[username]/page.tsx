@@ -13,7 +13,7 @@ import { Button } from "@/src/components/ui/button";
 import { toast } from "sonner";
 
 export default function UserPage() {
-  const { username } = useParams() as { username: string };
+  const { username } = useParams() as { username: string }; 
 
   const dispatch = useDispatch();
    const bookmarks = useSelector((state: RootState) => state.bookmarks.users);
@@ -43,7 +43,7 @@ export default function UserPage() {
     async function fetchRepos() {
       try {
         setLoading(true);
-        const repoData = await getUserRepos(username, page);
+        const repoData = await getUserRepos(username, page);  // Pagination fetch repo page by page instead at once
 
         setRepos((prev) =>
           page === 1 ? repoData : [...prev, ...repoData]

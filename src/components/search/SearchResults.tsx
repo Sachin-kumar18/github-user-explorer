@@ -1,6 +1,5 @@
 import UserCard from "./UserCard";
 import { GitHubUser } from "../../types/github";
-import { Skeleton } from "../ui/skeleton";
 
 interface Props {
   users: GitHubUser[];
@@ -17,7 +16,7 @@ export default function SearchResults({ users, loading }: Props) {
   }
 
   return (
-    <div className="grid gap-4 mt-6">
+    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
       {users.map((user) => (
         <UserCard key={user.login} user={user} />
       ))}
